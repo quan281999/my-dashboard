@@ -143,7 +143,7 @@ const SideBar = ({
         <Box m="1.5rem 2rem 2rem 3rem">
           <FlexBetween color={theme.palette.secondary.main}>
             <Typography variant="h4" fontWeight="bold">
-              ECOMVISION
+              MyDashboard
             </Typography>
             {!isNonMobile && (
               <IconButton
