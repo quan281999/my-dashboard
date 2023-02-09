@@ -2,8 +2,8 @@ import { type NextPage } from "next";
 
 import { api } from "../utils/api";
 
-const DashboardPage: NextPage = () => {
+const ProductsPage: NextPage = () => {
   return <main>DASHBOARD</main>;
 };
 
-export default DashboardPage;
+export default ProductsPage;
