@@ -14,9 +14,10 @@ const MyApp: AppType = ({ Component, ...rest }) => {
   return (
     <Provider store={store}>
       <CustomThemeProvider>
-        <Layout />
-        {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-        <Component {...props.pageProps} />
+        <Layout>
+          {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
+          <Component {...props.pageProps} />
+        </Layout>
       </CustomThemeProvider>
     </Provider>
   );

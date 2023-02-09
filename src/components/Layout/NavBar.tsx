@@ -8,13 +8,18 @@ import Search from "@mui/icons-material/Search";
 import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
 import ArrowDropDownOutlined from "@mui/icons-material/ArrowDropDownOutlined";
 import Menu from "@mui/icons-material/Menu";
-import { InputBase, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
 import { useDispatch } from "react-redux";
 
 import FlexBetween from "../shared/FlexBetween";
 import { setThemeMode } from "../../store/globalSlice";
 
-const NavBar = () => {
+type TNavBar = {
+  setIsSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const NavBar = ({ setIsSideBarOpen }: TNavBar) => {
   const theme = useTheme();
   const dispatch = useDispatch();
 
@@ -22,7 +27,7 @@ const NavBar = () => {
     <AppBar position="static" sx={{ background: "none", boxShadow: "none" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <FlexBetween>
-          <IconButton>
+          <IconButton onClick={() => setIsSideBarOpen((value) => !value)}>
             <Menu />
           </IconButton>
           <FlexBetween
