@@ -9,3 +9,111 @@ datasource db {
     provider = "mongodb"
     url      = env("DATABASE_URL")
 }
+
+enum Role {
+    USER       @map("user")
+    ADMIN      @map("admin")
+    SUPERADMIN @map("superadmin")
+}
+
+model User {
+    id             String          @id @default(auto()) @map("_id") @db.ObjectId
+    email          String          @unique
+    name           String
+    password       String
+    city           String
+    state          String
+    country        String
+    occupation     String
+    phoneNumber    String
+    role           Role            @default(ADMIN)
+    transactionIds String[]        @db.ObjectId
+    transactions   Transaction[]   @relation(fields: [transactionIds], references: [id])
+    affiliateState AffiliateStat[]
+    createdAt      DateTime        @default(now())
+}
+
+model Transaction {
+    id               String          @id @default(auto()) @map("_id") @db.ObjectId
+    cost             Float
+    userIds          String[]        @db.ObjectId
+    users            User[]          @relation(fields: [userIds], references: [id])
+    productIds       String[]        @db.ObjectId
+    products         Product[]       @relation(fields: [productIds], references: [id])
+    affiliateStatIds String[]        @db.ObjectId
+    AffiliateStats   AffiliateStat[] @relation(fields: [affiliateStatIds], references: [id])
+    createdAt        DateTime        @default(now())
+}
+
+model Product {
+    id             String        @id @default(auto()) @map("_id") @db.ObjectId
+    name           String
+    price          Float
+    description    String
+    category       String
+    rating         Float
+    supply         Int
+    transactionIds String[]      @db.ObjectId
+    transactions   Transaction[] @relation(fields: [transactionIds], references: [id])
+    productStat    ProductStat?
+    createdAt      DateTime      @default(now())
+}
+
+type MonthlyData {
+    month      String
+    totalSales Int
+    totalUnits Int
+}
+
+type DailyData {
+    date       String
+    totalSales Int
+    totalUnits Int
+}
+
+model ProductStat {
+    id                   String        @id @default(auto()) @map("_id") @db.ObjectId
+    yearlySalesTotal     Int
+    yearlyTotalSoldUnits Int
+    monthlyData          MonthlyData[]
+    dailyData            DailyData[]
+    productId            String        @unique @db.ObjectId
+    product              Product       @relation(fields: [productId], references: [id])
+    createdAt            DateTime      @default(now())
+}
+
+model AffiliateStat {
+    id               String        @id @default(auto()) @map("_id") @db.ObjectId
+    userId           String        @db.ObjectId
+    user             User          @relation(fields: [userId], references: [id])
+    affiliateSaleIds String[]      @db.ObjectId
+    affiliateSales   Transaction[] @relation(fields: [affiliateSaleIds], references: [id])
+    createdAt        DateTime      @default(now())
+}
+
+type SalesByCategory {
+    misc        Int?
+    shoes       Int?
+    clothing    Int?
+    accessories Int?
+}
+
+type OverallStatMonthlyData {
+    month      String
+    totalSales Int
+    totalUnits Int
+    id         String
+}
+
+model OverallStat {
+    id                   String                   @id @default(auto()) @map("_id") @db.ObjectId
+    totalCustomers       Int
+    yearlySalesTotal     Int
+    yearlyTotalSoldUnits Int
+    year                 Int
+    monthlyData          OverallStatMonthlyData[]
+    dailyData            DailyData[]
+    salesByCategory      SalesByCategory
+    createdAt            DateTime                 @default(now())
+    updatedAt            DateTime                 @default(now())
+}
