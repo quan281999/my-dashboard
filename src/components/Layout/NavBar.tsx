@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -9,10 +9,9 @@ import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
 import Menu from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-import { useDispatch } from "react-redux";
 
 import FlexBetween from "../shared/FlexBetween";
-import { setThemeMode } from "../../store/globalSlice";
+import { ThemeModeContext } from "../shared/CustomeThemeProvider";
 
 type TNavBarProps = {
   setIsSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,7 +19,7 @@ type TNavBarProps = {
 
 const NavBar = ({ setIsSideBarOpen }: TNavBarProps) => {
   const theme = useTheme();
-  const dispatch = useDispatch();
+  const { setThemeMode } = useContext(ThemeModeContext);
 
   return (
     <AppBar position="static" sx={{ background: "none", boxShadow: "none" }}>
@@ -44,11 +43,9 @@ const NavBar = ({ setIsSideBarOpen }: TNavBarProps) => {
 
         <FlexBetween gap="1.5rem">
           <IconButton
-            onClick={() =>
-              dispatch(
-                setThemeMode(theme.palette.mode === "dark" ? "light" : "dark")
-              )
-            }
+            onClick={() => {
+              setThemeMode(theme.palette.mode === "dark" ? "light" : "dark");
+            }}
           >
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined />
