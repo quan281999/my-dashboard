@@ -6,11 +6,11 @@ import { selectThemeModeState } from "../../store/globalSlice";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "../../utils/theme";
 
-type TCustomThemeProvider = {
+type TCustomThemeProviderProps = {
   children: React.ReactNode;
 };
 
-const CustomThemeProvider = ({ children }: TCustomThemeProvider) => {
+const CustomThemeProvider = ({ children }: TCustomThemeProviderProps) => {
   const themeMode = useSelector(selectThemeModeState);
   const theme = useMemo(
     () => createTheme(themeSettings(themeMode)),

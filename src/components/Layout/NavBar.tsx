@@ -6,7 +6,6 @@ import LightModeOutlined from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlined from "@mui/icons-material/DarkModeOutlined";
 import Search from "@mui/icons-material/Search";
 import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
-import ArrowDropDownOutlined from "@mui/icons-material/ArrowDropDownOutlined";
 import Menu from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -15,11 +14,11 @@ import { useDispatch } from "react-redux";
 import FlexBetween from "../shared/FlexBetween";
 import { setThemeMode } from "../../store/globalSlice";
 
-type TNavBar = {
+type TNavBarProps = {
   setIsSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const NavBar = ({ setIsSideBarOpen }: TNavBar) => {
+const NavBar = ({ setIsSideBarOpen }: TNavBarProps) => {
   const theme = useTheme();
   const dispatch = useDispatch();
 

@@ -5,11 +5,11 @@ import { Box, useMediaQuery } from "@mui/material";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 
-type TLayout = {
+type TLayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout = ({ children }: TLayout) => {
+const Layout = ({ children }: TLayoutProps) => {
   const isNonMobile = useMediaQuery("(min-width: 600px)");
   const [isSideBarOpen, setIsSideBarOpen] = useState(true);
 

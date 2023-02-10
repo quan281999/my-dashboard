@@ -106,7 +106,7 @@ const SIDEBAR_ITEMS = [
   },
 ];
 
-type TSideBar = {
+type TSideBarProps = {
   isNonMobile: boolean;
   isSidebarOpen: boolean;
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -116,7 +116,7 @@ const SideBar = ({
   isNonMobile,
   isSidebarOpen,
   setIsSidebarOpen,
-}: TSideBar) => {
+}: TSideBarProps) => {
   const theme = useTheme();
   const router = useRouter();
   const [activePage, setActivePage] = useState("");
