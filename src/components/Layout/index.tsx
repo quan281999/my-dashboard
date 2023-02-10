@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import { Box, useMediaQuery } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Box from "@mui/material/Box";
 
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
