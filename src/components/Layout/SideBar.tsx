@@ -9,6 +9,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import Divider from "@mui/material/Divider";
 import ChevronLeft from "@mui/icons-material/ChevronLeft";
 import SettingsOutlined from "@mui/icons-material/SettingsOutlined";
 import ChevronRightOutlined from "@mui/icons-material/ChevronRightOutlined";
@@ -27,6 +28,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import FlexBetween from "../shared/FlexBetween";
+import { api } from "../../utils/api";
+import profileImage from "../../../public/profileImage.png";
 
 const SIDEBAR_WIDTH = 250;
 
@@ -117,6 +120,9 @@ const SideBar = ({
   const theme = useTheme();
   const router = useRouter();
   const [activePage, setActivePage] = useState("");
+  const { data } = api.user.getUserInfo.useQuery({
+    id: "63701cc1f03239b7f700000e", // MOCK DEFAULT USER, AUTHENTICATION IS NOT IMPLEMENTED IN THIS SMALL APP
+  });
 
   useEffect(() => {
     setActivePage(router.pathname.slice(1));
@@ -202,6 +208,43 @@ const SideBar = ({
           }
         })}
       </List>
+
+      <Box position="absolute" bottom="2rem">
+        <Divider />
+        <FlexBetween textTransform="none" gap="1rem" m="1.5rem 2rem 0 3rem">
+          <Box
+            component="img"
+            alt="profile"
+            src={profileImage.src}
+            height="40px"
+            width="40px"
+            borderRadius="50%"
+            sx={{ objectFit: "cover" }}
+          />
+          {/* <ProfileImage /> */}
+          <Box textAlign="left">
+            <Typography
+              fontWeight="bold"
+              fontSize="0.9rem"
+              sx={{ color: theme.palette.secondary[100] }}
+            >
+              {data?.data?.name}
+            </Typography>
+            <Typography
+              fontSize="0.8rem"
+              sx={{ color: theme.palette.secondary[200] }}
+            >
+              {data?.data?.occupation}
+            </Typography>
+          </Box>
+          <SettingsOutlined
+            sx={{
+              color: theme.palette.secondary[300],
+              fontSize: "25px ",
+            }}
+          />
+        </FlexBetween>
+      </Box>
     </Drawer>
   );
 };
