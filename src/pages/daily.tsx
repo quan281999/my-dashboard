@@ -45,7 +45,7 @@ const DailyPage: NextPage = () => {
 
     const formattedData = [totalSalesLine, totalUnitsLine];
     return [formattedData];
-  }, [data, startDate, endDate]);
+  }, [data, startDate, endDate, theme.palette.secondary]);
 
   return (
     <Box m="1.5rem 2.5rem">

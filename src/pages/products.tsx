@@ -108,7 +108,7 @@ const ProductsPage: NextPage = () => {
   console.log(data);
   return (
     <Box m="1.5rem 2rem">
-      <Header title="PRODUCTS" subtitle="See your list of products." />
+      <Header title="PRODUCTS" subtitle="See your list of products" />
       {!isLoading && data ? (
         <Box
           display="grid"

@@ -47,7 +47,7 @@ const OverviewChart = ({ isDashboard = false, view }: TOverviewChartProps) => {
     );
 
     return [[totalSalesLine], [totalUnitsLine]];
-  }, [data]);
+  }, [data, theme.palette.secondary]);
 
   if (!totalSalesLine || !totalUnitsLine || isLoading)
     return (
