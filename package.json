@@ -18,6 +18,7 @@
     "@nivo/bar": "^0.80.0",
     "@nivo/core": "^0.80.0",
     "@nivo/geo": "^0.80.0",
+    "@nivo/line": "^0.80.0",
     "@nivo/pie": "^0.80.0",
     "@prisma/client": "^4.9.0",
     "@reduxjs/toolkit": "^1.9.2",
