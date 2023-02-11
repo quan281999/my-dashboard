@@ -17,8 +17,6 @@ import FlexBetween from "../components/shared/FlexBetween";
 
 const DEFAULT_PAGE_SIZE = 10;
 
-const DEFAULT_ROWS_PER_PAGE = [10, 20, 50];
-
 const COLUMNS = [
   {
     field: "id",
@@ -70,7 +68,7 @@ const DataGridCustomToolbar = () => (
 const CustomersPage: NextPage = () => {
   const theme = useTheme();
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [sort, setSort] = useState<GridSortModel>([]);
   const { data, isLoading } = api.transaction.getTransactions.useQuery({
     page,
@@ -84,6 +82,7 @@ const CustomersPage: NextPage = () => {
       <Box
         height="80vh"
         sx={{
+          mt: "1rem",
           "& .MuiDataGrid-root": {
             border: "none",
           },

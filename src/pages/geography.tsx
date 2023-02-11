@@ -17,7 +17,7 @@ const GeoGraphyPage: NextPage = () => {
     <Box m="1.5rem 2.5rem">
       <Header title="GEOGRAPHY" subtitle="Find where your users are located." />
       <Box
-        mt="40px"
+        mt="1rem"
         height="75vh"
         border={`1px solid ${theme.palette.secondary[200]}`}
         borderRadius="4px"
