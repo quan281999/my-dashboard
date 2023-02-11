@@ -1,5 +1,7 @@
-import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
+import COUNTRY_ISO_MAPPING from "../../../data/isoMapping";
+
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const userRouter = createTRPCRouter({
   getUserInfo: publicProcedure
@@ -27,5 +29,28 @@ export const userRouter = createTRPCRouter({
     return {
       data: customers,
     };
+  }),
+  getUsersByGeoLocation: publicProcedure.query(async ({ ctx }) => {
+    const users = await ctx.prisma.user.findMany({});
+    const mappedLocations = users.reduce(
+      (acc: Record<string, number>, { country }) => {
+        const countryISO3 = COUNTRY_ISO_MAPPING[country];
+        if (countryISO3 === undefined) return acc;
+        else {
+          if (!acc[countryISO3]) {
+            acc[countryISO3] = 0;
+          }
+          acc[countryISO3]++;
+          return acc;
+        }
+      },
+      {}
+    );
+    const formattedLocations = Object.entries(mappedLocations).map(
+      ([country, count]) => {
+        return { id: country, value: count };
+      }
+    );
+    return { data: formattedLocations };
   }),
 });
