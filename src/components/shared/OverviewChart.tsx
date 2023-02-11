@@ -13,7 +13,10 @@ type TOverviewChartProps = {
 
 const OverviewChart = ({ isDashboard = false, view }: TOverviewChartProps) => {
   const theme = useTheme();
-  const { data, isLoading } = api.overallStat.getOverallStat.useQuery();
+  const { data, isLoading } = api.overallStat.getOverallStat.useQuery(
+    undefined,
+    { refetchOnMount: false }
+  );
 
   const [totalSalesLine, totalUnitsLine] = useMemo(() => {
     if (!data?.data) return [];
