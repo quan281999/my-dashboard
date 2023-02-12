@@ -1,5 +1,4 @@
 import React from "react";
-import { type NextPage } from "next";
 import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import type { GridRenderCellParams } from "@mui/x-data-grid";
@@ -20,47 +19,45 @@ const COLUMNS = [
     flex: 1,
   },
   {
-    field: "name",
-    headerName: "Name",
-    flex: 0.5,
+    field: "userIds",
+    headerName: "# of Users Involved",
+    flex: 1,
+    sortable: false,
+    renderCell: (params: GridRenderCellParams<string>) => params.value?.length,
   },
   {
-    field: "email",
-    headerName: "Email",
+    field: "createdAt",
+    headerName: "CreatedAt",
     flex: 1,
   },
   {
-    field: "phoneNumber",
-    headerName: "Phone Number",
+    field: "products",
+    headerName: "# of Products",
     flex: 0.5,
-    renderCell: (params: GridRenderCellParams<string>) => {
-      return params.value?.replace(/^(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
-    },
+    sortable: false,
+    renderCell: (params: GridRenderCellParams<string>) => params.value?.length,
   },
   {
-    field: "country",
-    headerName: "Country",
-    flex: 0.4,
-  },
-  {
-    field: "occupation",
-    headerName: "Occupation",
+    field: "cost",
+    headerName: "Cost",
     flex: 1,
-  },
-  {
-    field: "role",
-    headerName: "Role",
-    flex: 0.5,
+    renderCell: (params: GridRenderCellParams<number>) =>
+      `$${Number(params.value).toFixed(2)}`,
   },
 ];
 
-const AdminPage: NextPage = () => {
+const PerformancePage = () => {
   const theme = useTheme();
-  const { data, isLoading } = api.user.getAdmins.useQuery();
+  const { data, isLoading } = api.transaction.getUserPerformance.useQuery({
+    id: "63701cc1f03239b7f700000e",
+  });
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="ADMINS" subtitle="Managing admins and list of admins" />
+      <Header
+        title="PERFORMANCE"
+        subtitle="Track your Affiliate Sales Performance Here"
+      />
       <Box
         mt="1rem"
         height="75vh"
@@ -106,4 +103,4 @@ const AdminPage: NextPage = () => {
   );
 };
 
-export default AdminPage;
+export default PerformancePage;

@@ -37,4 +37,14 @@ export const transactionRouter = createTRPCRouter({
       const totalTransactions = await ctx.prisma.transaction.count();
       return { data: transactions, total: totalTransactions };
     }),
+  getUserPerformance: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const transactions = await ctx.prisma.transaction.findMany({
+        where: { AffiliateStats: { some: { userId: input.id } } },
+      });
+      return {
+        data: transactions,
+      };
+    }),
 });
