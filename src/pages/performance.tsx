@@ -21,9 +21,10 @@ const COLUMNS = [
   {
     field: "userIds",
     headerName: "# of Users Involved",
-    flex: 1,
+    flex: 0.5,
     sortable: false,
-    renderCell: (params: GridRenderCellParams<string>) => params.value?.length,
+    renderCell: (params: GridRenderCellParams<Array<string>>) =>
+      params.value?.length,
   },
   {
     field: "createdAt",
@@ -31,11 +32,12 @@ const COLUMNS = [
     flex: 1,
   },
   {
-    field: "products",
+    field: "productIds",
     headerName: "# of Products",
     flex: 0.5,
     sortable: false,
-    renderCell: (params: GridRenderCellParams<string>) => params.value?.length,
+    renderCell: (params: GridRenderCellParams<Array<string>>) =>
+      params.value?.length,
   },
   {
     field: "cost",
