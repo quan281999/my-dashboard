@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -30,6 +30,7 @@ import { useRouter } from "next/router";
 import FlexBetween from "../shared/FlexBetween";
 import { api } from "../../utils/api";
 import profileImage from "../../../public/profileImage.png";
+import { AuthContext } from "../../pages/_app";
 
 const SIDEBAR_WIDTH = 250;
 
@@ -120,8 +121,9 @@ const SideBar = ({
   const theme = useTheme();
   const router = useRouter();
   const [activePage, setActivePage] = useState("");
+  const { userId } = useContext(AuthContext);
   const { data } = api.user.getUserInfo.useQuery({
-    id: "63701cc1f03239b7f700000e", // MOCK DEFAULT USER, AUTHENTICATION IS NOT IMPLEMENTED IN THIS SMALL APP
+    id: userId,
   });
 
   useEffect(() => {

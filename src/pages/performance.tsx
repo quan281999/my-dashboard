@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import type { GridRenderCellParams } from "@mui/x-data-grid";
@@ -7,6 +7,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { api } from "../utils/api";
 import DataGridCustomColumnMenu from "../components/shared/DataGridCustomColumnMenu";
 import Header from "../components/shared/Header";
+import { AuthContext } from "./_app";
 
 const DEFAULT_PAGE_SIZE = 10;
 
@@ -50,8 +51,9 @@ const COLUMNS = [
 
 const PerformancePage = () => {
   const theme = useTheme();
+  const { userId } = useContext(AuthContext);
   const { data, isLoading } = api.transaction.getUserPerformance.useQuery({
-    id: "63701cc1f03239b7f700000e",
+    id: userId,
   });
 
   return (
