@@ -5,7 +5,7 @@ import { api } from "../utils/api";
 import "../styles/globals.css";
 import { wrapper } from "../store";
 import Layout from "../components/Layout";
-import CustomThemeProvider from "../components/shared/CustomeThemeProvider";
+import CustomThemeProvider from "../components/shared/CustomThemeProvider";
 
 const MyApp: AppType = ({ Component, ...rest }) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

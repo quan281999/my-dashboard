@@ -11,7 +11,7 @@ import { useTheme } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 
 import FlexBetween from "../shared/FlexBetween";
-import { ThemeModeContext } from "../shared/CustomeThemeProvider";
+import { ThemeModeContext } from "../shared/CustomThemeProvider";
 
 type TNavBarProps = {
   setIsSideBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
