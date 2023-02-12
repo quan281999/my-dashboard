@@ -52,12 +52,12 @@ const Product = ({
       <CardContent>
         <Typography
           sx={{ fontSize: 14 }}
-          color={theme.palette.secondary[700]}
+          color={theme.palette.secondary[400]}
           p="0.3rem"
           width="fit-content"
           border="solid 1px"
           borderRadius="5px"
-          borderColor={theme.palette.secondary[700]}
+          borderColor={theme.palette.secondary[400]}
           gutterBottom
         >
           {category}

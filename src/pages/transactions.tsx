@@ -108,6 +108,7 @@ const CustomersPage: NextPage = () => {
         }}
       >
         <DataGrid
+          autoHeight
           loading={isLoading || !data}
           getRowId={(row) => row.id}
           rows={(data && data.data) || []}

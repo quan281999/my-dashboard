@@ -24,7 +24,7 @@ const OverviewChart = ({ isDashboard = false, view }: TOverviewChartProps) => {
     const { monthlyData } = data.data;
     const totalSalesLine = {
       id: "totalSales",
-      color: theme.palette.secondary.main,
+      color: theme.palette.secondary[600],
       data: [] as unknown as { x: string; y: number }[],
     };
     const totalUnitsLine = {
@@ -88,10 +88,11 @@ const OverviewChart = ({ isDashboard = false, view }: TOverviewChartProps) => {
         },
         tooltip: {
           container: {
-            color: theme.palette.primary.main,
+            color: theme.palette.primary.dark,
           },
         },
       }}
+      colors={{ datum: "color" }}
       margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
       xScale={{ type: "point" }}
       yScale={{

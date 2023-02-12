@@ -24,12 +24,12 @@ const DailyPage: NextPage = () => {
     const { dailyData } = data.data;
     const totalSalesLine = {
       id: "totalSales",
-      color: theme.palette.secondary.main,
+      color: theme.palette.secondary[200],
       data: [] as unknown as { x: string; y: number }[],
     };
     const totalUnitsLine = {
       id: "totalUnits",
-      color: theme.palette.secondary[600],
+      color: theme.palette.secondary[700],
       data: [] as unknown as { x: string; y: number }[],
     };
 
@@ -105,7 +105,7 @@ const DailyPage: NextPage = () => {
               },
               tooltip: {
                 container: {
-                  color: theme.palette.primary.main,
+                  color: theme.palette.primary.dark,
                 },
               },
             }}

@@ -184,7 +184,7 @@ const SideBar = ({
                           : "transparent",
                       color:
                         activePage === item.id
-                          ? theme.palette.primary[600]
+                          ? theme.palette.primary[900]
                           : theme.palette.secondary[100],
                     }}
                   >
@@ -193,7 +193,7 @@ const SideBar = ({
                         ml: "2rem",
                         color:
                           activePage === item.id
-                            ? theme.palette.primary[600]
+                            ? theme.palette.primary[900]
                             : theme.palette.secondary[200],
                       }}
                     >

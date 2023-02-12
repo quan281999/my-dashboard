@@ -15,12 +15,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
   );
 
   const colors = useMemo(
-    () => [
-      theme.palette.secondary[200],
-      theme.palette.secondary[400],
-      theme.palette.secondary[600],
-      theme.palette.secondary[800],
-    ],
+    () => ["#DED0FC", "#C2A9FA", "#A783F8", "#8B5CF6"],
     [theme.palette.secondary]
   );
   const formattedData = useMemo(
@@ -56,6 +51,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
       <ResponsivePie
         data={formattedData}
         theme={{
+          textColor: "#f13525",
           axis: {
             domain: {
               line: {
@@ -84,7 +80,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
           },
           tooltip: {
             container: {
-              color: theme.palette.primary.main,
+              color: theme.palette.primary.dark,
             },
           },
         }}
